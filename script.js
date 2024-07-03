@@ -9,25 +9,7 @@ const count = 10;
 const apiKey = "DEMO_KEY";
 const apiUrl = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}&count=${count}`;
 
-let resultsArray = [
-    {
-        date: "2002-06-26",
-        explanation: "Clouds of glowing gas mingle with lanes of dark dust in the Trifid Nebula, a star forming region toward the constellation of Sagittarius.  In the center, the three huge dark dust lanes that give the Trifid its name all come together. Mountains of opaque dust appear on the lower left, while filaments of dust are visible threaded throughout the nebula.  A single massive star visible near the center causes much of the Trifid's glow.  The Trifid, also known as M20, is only about 300,000 years old, making it among the youngest emission nebula known.  The nebula lies about 5000 light years away and part pictured above spans about 20 light years.  The above false-color digitally enhanced image was taken with the Gemini North telescope earlier this month.",
-        hdurl: "https://apod.nasa.gov/apod/image/0206/trifid_gemini_big.jpg",
-        title: "In the Center of the Trifid Nebula",
-        url: "https://apod.nasa.gov/apod/image/0206/trifid_gemini.jpg"
-    },
-    {
-        copyright: "\nWang Jin\n",
-        date: "2022-06-27",
-        explanation: "The Gum Nebula is so large and close it is actually hard to see. This interstellar expanse of glowing hydrogen gas frequently evades notice because it spans 35 degrees -- over 70 full Moons -- while much of it is quite dim. This featured spectacular 90-degree wide mosaic, however, was designed to be both wide and deep enough to bring up  the Gum -- visible in red on the right. The image was acquired late last year with both the foreground -- including Haba Snow Mountain -- and the background -- including the Milky Way's central band -- captured by the same camera and from the same location in Shangri-La, Yunnan, China. The Gum Nebula is so close that we are only about 450 light-years from the front edge, while about 1,500 light-years from the back edge. Named for a cosmic cloud hunter, Australian astronomer Colin Stanley Gum (1924-1960), the origin of this complex nebula is still being debated. A leading theory for the origin of the Gum Nebula is that  it is the remnant of a million year-old supernova explosion, while a competing theory holds that the Gum is a molecular cloud shaped over eons by multiple supernovas and the outflowing winds of several massive stars.",
-        hdurl: "https://apod.nasa.gov/apod/image/2206/GumMountain_WangJin_2400.jpg",
-        media_type: "image",
-        service_version: "v1",
-        title: "The Gum Nebula over Snowy Mountains",
-        url: "https://apod.nasa.gov/apod/image/2206/GumMountain_WangJin_1080.jpg"
-    }
-];
+let resultsArray = [];
 let favorites = {};
 
 
@@ -140,9 +122,8 @@ async function getNasaPictures() {
 
     try {
 
-        // const response = await fetch(apiUrl);
-        // resultsArray = await response.json();
-        // console.log(resultsArray);
+        const response = await fetch(apiUrl);
+        resultsArray = await response.json();
         updateDOM("results");
 
     } catch (err) {
